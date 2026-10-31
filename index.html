@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>技术路线索引 2026 · 自动驾驶 / 具身 / Agent</title>
+<meta name="description" content="面向自动驾驶规控、具身智能算法、Agent 系统开发者的技术路线索引：三个方向、12 条子线、38 个条目、41 篇论文与仓库，附路线图、方案对比与量化洞察。">
+<meta name="theme-color" content="#f7f5f0">
+<meta property="og:title" content="技术路线索引 2026 · 三条主线，一张能对账的路线图">
+<meta property="og:description" content="路线图 + 方案对比 + 量化洞察 + 41 篇可核论文与仓库。">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2317140f'/%3E%3Cpath d='M16 46V18h6l10 16 10-16h6v28h-6V29l-10 15-10-15v17z' fill='%23f7f5f0'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#f7f5f0; --paper:#fffdf9; --ink:#17140f; --ink-2:#413b33; --muted:#8b8276;
+  --line:#e0dacd; --line-2:#cec6b6;
+  --c1:#c2410c; --c1-soft:#fbe9df;
+  --c2:#0f766e; --c2-soft:#e2f2ef;
+  --c3:#4338ca; --c3-soft:#e9e7fb;
+  --t-open:#15803d; --t-open-bg:#e6f4ea;
+  --t-paper:#1d4ed8; --t-paper-bg:#e7edfd;
+  --t-frame:#7c3aed; --t-frame-bg:#f1ebfe;
+  --t-event:#b45309; --t-event-bg:#fdf0e0;
+  --serif:"Songti SC","Source Han Serif SC","Noto Serif SC","STSong",Georgia,"SimSun",serif;
+  --sans:"PingFang SC","Microsoft YaHei","Segoe UI",system-ui,-apple-system,"Helvetica Neue",sans-serif;
+  --mono:ui-monospace,"Cascadia Mono","SFMono-Regular","JetBrains Mono",Consolas,monospace;
+  --max:1200px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.7;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(rgba(23,20,15,.028) 1px,transparent 1px),linear-gradient(90deg,rgba(23,20,15,.028) 1px,transparent 1px);background-size:64px 64px;mask-image:linear-gradient(180deg,rgba(0,0,0,.55),transparent 62%)}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--ink);color:var(--bg)}
+.progress{position:fixed;top:0;left:0;height:2px;width:0;background:var(--ink);z-index:90;transition:width .12s linear}
+.topbar{position:sticky;top:0;z-index:60;display:flex;align-items:center;gap:24px;padding:0 32px;height:62px;border-bottom:1px solid var(--line);background:rgba(247,245,240,.86);backdrop-filter:blur(14px) saturate(1.2);-webkit-backdrop-filter:blur(14px) saturate(1.2)}
+.brand{display:flex;align-items:center;gap:11px;font-weight:600;flex:0 0 auto}
+.brand .mark{width:24px;height:24px;border-radius:2px;background:var(--ink);display:grid;place-items:center;color:var(--bg);font-family:var(--serif);font-size:13px;font-weight:700;line-height:1}
+.brand .txt{font-family:var(--serif);font-size:15.5px}
+.brand .txt em{font-style:normal;color:var(--muted);font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;margin-left:8px;vertical-align:1px}
+.topnav{display:flex;gap:2px;margin-left:auto}
+.topnav a{position:relative;padding:8px 13px;font-size:13.5px;color:var(--ink-2);border-radius:2px;transition:color .18s,background .18s;white-space:nowrap}
+.topnav a:hover{background:rgba(23,20,15,.05);color:var(--ink)}
+.topnav a.active{color:var(--ink);font-weight:600}
+.topnav a.active::after{content:"";position:absolute;left:13px;right:13px;bottom:2px;height:1.5px;background:var(--ink)}
+.topmeta{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--muted);padding-left:18px;border-left:1px solid var(--line);white-space:nowrap}
+@media(max-width:820px){.topbar{padding:0 18px;height:56px}.topmeta{display:none}.topnav a{padding:8px 9px;font-size:12.5px}.brand .txt em{display:none}}
+.shell{max-width:var(--max);margin:0 auto;padding:0 32px;position:relative;z-index:1}
+@media(max-width:760px){.shell{padding:0 18px}}
+.hero{padding:74px 0 38px;border-bottom:1px solid var(--line-2)}
+.eyebrow{display:flex;align-items:center;gap:12px;font-family:var(--mono);font-size:11px;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;margin:0 0 24px}
+.eyebrow::before{content:"";width:34px;height:1px;background:var(--line-2)}
+.hero h1{font-family:var(--serif);font-weight:600;margin:0;font-size:clamp(38px,6.2vw,82px);line-height:1.04;letter-spacing:-.03em;max-width:15em}
+.hero h1 .thin{font-weight:400;color:var(--muted)}
+.hero h1 .dot{color:var(--c1)}
+.hero-sub{margin:24px 0 0;max-width:46em;font-size:16.5px;line-height:1.85;color:var(--ink-2)}
+.hero-sub strong{font-weight:600;color:var(--ink);box-shadow:inset 0 -.42em 0 var(--c1-soft)}
+.hero-meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.pill{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;border:1px solid var(--line-2);border-radius:999px;padding:5px 12px;color:var(--ink-2);background:rgba(255,253,249,.55)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);margin-top:48px;border-top:1px solid var(--line-2)}
+.stat{padding:20px 22px 22px;border-right:1px solid var(--line)}
+.stat:first-child{padding-left:0}.stat:last-child{border-right:0}
+.stat b{display:block;font-family:var(--serif);font-size:34px;line-height:1;font-weight:600;letter-spacing:-.02em}
+.stat span{display:block;margin-top:8px;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+@media(max-width:760px){.hero{padding:46px 0 28px}.stats{grid-template-columns:repeat(2,1fr);margin-top:34px}.stat{padding:16px 14px}.stat:nth-child(2){border-right:0}.stat:nth-child(1),.stat:nth-child(2){border-bottom:1px solid var(--line)}.stat:first-child{padding-left:14px}}
+.howto{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:44px}
+.howto div{background:var(--bg);padding:18px 20px}
+.howto b{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--muted);margin-bottom:6px}
+.howto p{margin:0;font-size:13.5px;color:var(--ink-2);line-height:1.65}
+@media(max-width:760px){.howto{grid-template-columns:1fr}}
+.filterbar{position:sticky;top:62px;z-index:55;display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:14px 0;border-bottom:1px solid var(--line);background:rgba(247,245,240,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+@media(max-width:820px){.filterbar{top:56px}}
+.filter-label{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:var(--muted);margin-right:6px;text-transform:uppercase}
+.chip{appearance:none;border:1px solid var(--line-2);background:transparent;color:var(--ink-2);font-family:var(--sans);font-size:13px;padding:6px 14px;border-radius:999px;cursor:pointer;transition:all .18s ease;display:inline-flex;align-items:center;gap:7px;line-height:1.4}
+.chip:hover{border-color:var(--ink-2);color:var(--ink)}
+.chip .n{font-family:var(--mono);font-size:10px;color:var(--muted)}
+.chip[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.chip[aria-pressed="true"] .n{color:rgba(247,245,240,.6)}
+.chip:focus-visible{outline:2px solid var(--c1);outline-offset:2px}
+.filter-count{margin-left:auto;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--muted)}
+@media(max-width:760px){.filter-count{display:none}}
+.direction{padding:70px 0 8px;border-bottom:1px solid var(--line-2);scroll-margin-top:110px}
+.dir-head{display:flex;align-items:flex-end;gap:26px;margin-bottom:24px}
+.dir-index{font-family:var(--serif);font-size:clamp(56px,9vw,104px);line-height:.78;font-weight:600;letter-spacing:-.05em;color:transparent;-webkit-text-stroke:1.2px var(--line-2);flex:0 0 auto}
+.dir-titles{flex:1 1 auto;min-width:0;padding-bottom:2px}
+.dir-kicker{font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;color:var(--muted);margin:0 0 8px;text-transform:uppercase}
+.dir-titles h2{font-family:var(--serif);font-size:clamp(28px,3.6vw,44px);font-weight:600;margin:0;letter-spacing:-.01em;line-height:1.1;display:flex;align-items:center;gap:16px}
+.dir-titles h2 .swatch{width:9px;height:9px;border-radius:50%;flex:0 0 auto;transform:translateY(-3px)}
+.dir-tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--muted);border:1px solid var(--line);padding:4px 9px;border-radius:2px;white-space:nowrap;margin-left:auto}
+@media(max-width:760px){.dir-tag{display:none}.dir-head{gap:16px;margin-bottom:20px}}
+.narrative{position:relative;background:var(--paper);border:1px solid var(--line);border-left:3px solid var(--c1);padding:20px 26px;border-radius:3px}
+.direction[data-accent="2"] .narrative{border-left-color:var(--c2)}
+.direction[data-accent="3"] .narrative{border-left-color:var(--c3)}
+.narrative .k{font-family:var(--mono);font-size:10px;letter-spacing:.18em;color:var(--muted);display:block;margin-bottom:8px;text-transform:uppercase}
+.narrative p{margin:0;font-family:var(--serif);font-size:clamp(17px,2vw,21px);line-height:1.65;font-weight:500;color:var(--ink)}
+@media(max-width:760px){.narrative{padding:16px 18px}.narrative p{font-size:16.5px}}
+.keynums{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-top:0;margin-bottom:8px}
+.keynums div{background:var(--paper);padding:14px 16px}
+.keynums b{display:block;font-family:var(--sans);font-size:22px;line-height:1.15;font-weight:600;letter-spacing:-.01em;color:var(--ink)}
+.keynums span{display:block;margin-top:5px;font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;color:var(--muted);line-height:1.5}
+@media(max-width:760px){.keynums{grid-template-columns:repeat(2,1fr)}}
+.sec-title{display:flex;align-items:baseline;gap:14px;margin:44px 0 0;flex-wrap:wrap}
+.sec-title h3{font-family:var(--serif);font-size:clamp(20px,2.4vw,26px);margin:0;font-weight:600;letter-spacing:-.01em}
+.sec-title .hint{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--muted)}
+.route{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:22px 0 6px;position:relative}
+.route::before{content:"";position:absolute;top:31px;left:1%;right:1%;height:1px;background:var(--line-2)}
+.rstep{position:relative;background:var(--paper);border:1px solid var(--line);border-radius:3px;padding:14px 16px 16px;z-index:1}
+.rstep .yr{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--bg);background:var(--ink);padding:2px 7px;border-radius:2px}
+.rstep h4{font-family:var(--serif);font-size:17px;margin:10px 0 6px;font-weight:600;line-height:1.3}
+.rstep p{margin:0;font-size:12.5px;line-height:1.6;color:var(--ink-2);min-height:3.2em}
+.rstep .rep{display:block;margin-top:10px;font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.03em}
+.rstep .metric{display:block;margin-top:5px;font-size:11.5px;color:var(--c1);border-top:1px dashed var(--line);padding-top:6px}
+.direction[data-accent="2"] .rstep .metric{color:var(--c2)}
+.direction[data-accent="3"] .rstep .metric{color:var(--c3)}
+@media(max-width:900px){.route{grid-template-columns:1fr 1fr}.route::before{display:none}}
+@media(max-width:620px){.route{grid-template-columns:1fr}}
+.cmp-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:3px;background:var(--paper);margin:14px 0 4px}
+.cmp{width:100%;border-collapse:collapse;font-size:13px;min-width:680px}
+.cmp th{text-align:left;font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:11px 14px;border-bottom:1px solid var(--line-2);white-space:nowrap;background:rgba(247,245,240,.6)}
+.cmp td{padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink-2);line-height:1.6}
+.cmp tr:last-child td{border-bottom:0}
+.cmp td:first-child{color:var(--ink);font-weight:600;white-space:nowrap}
+.subline{padding:34px 0 4px}
+.subline-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+.subline-num{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:var(--bg);background:var(--ink);padding:3px 8px;border-radius:2px;transform:translateY(-2px)}
+.subline-head h3{margin:0;font-family:var(--serif);font-size:clamp(19px,2.2vw,24px);font-weight:600;letter-spacing:-.01em;line-height:1.3}
+.subline-head .cnt{font-family:var(--mono);font-size:10.5px;color:var(--muted);letter-spacing:.08em;margin-left:auto}
+.entries{list-style:none;margin:10px 0 0;padding:0;border-top:1px solid var(--line-2)}
+.entry{display:grid;grid-template-columns:minmax(195px,.92fr) 2.1fr 58px;gap:8px 26px;align-items:start;padding:16px 6px 16px 0;border-bottom:1px solid var(--line);transition:background .16s ease,padding .16s ease}
+.entry:hover{background:rgba(255,253,249,.85);padding-left:10px}
+.entry-main{display:flex;flex-direction:column;gap:7px;min-width:0}
+.entry-sub{font-family:var(--mono);font-size:9.5px;letter-spacing:.04em;color:var(--muted);line-height:1.55}
+.entry-name{font-family:var(--serif);font-size:16.5px;font-weight:600;line-height:1.4;margin:0}
+.badge{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;padding:2px 7px;border-radius:2px;align-self:flex-start;white-space:nowrap;border:1px solid transparent;line-height:1.6}
+[data-type="开源"] .badge{color:var(--t-open);background:var(--t-open-bg);border-color:#c7e3cf}
+[data-type="论文"] .badge{color:var(--t-paper);background:var(--t-paper-bg);border-color:#cbd8fb}
+[data-type="框架"] .badge{color:var(--t-frame);background:var(--t-frame-bg);border-color:#dfd2fb}
+[data-type="事件"] .badge{color:var(--t-event);background:var(--t-event-bg);border-color:#f2ddbd}
+.entry-desc{margin:0;font-size:14.5px;line-height:1.72;color:var(--ink-2)}
+.entry-desc b{font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums}
+.entry-link{justify-self:end;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--muted);border-bottom:1px solid transparent;transition:color .16s,border-color .16s;white-space:nowrap;padding-top:2px}
+.entry-link:hover{color:var(--ink);border-color:var(--ink)}
+.entry-link.none{opacity:.45;cursor:default;pointer-events:none}
+@media(max-width:900px){.entry{grid-template-columns:1fr auto;gap:6px 16px}.entry-main{grid-column:1/-1;flex-direction:row;align-items:center;flex-wrap:wrap;gap:10px}.entry-desc{grid-column:1/2}.entry-link{grid-column:2/3;align-self:start}}
+.insight{border-left:2px solid var(--c1);padding:2px 0 2px 22px;margin:24px 0}
+.direction[data-accent="2"] .insight{border-left-color:var(--c2)}
+.direction[data-accent="3"] .insight{border-left-color:var(--c3)}
+.insight .fig{font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;color:var(--c1);display:block;margin-bottom:6px}
+.direction[data-accent="2"] .insight .fig{color:var(--c2)}
+.direction[data-accent="3"] .insight .fig{color:var(--c3)}
+.insight h4{font-family:var(--serif);font-size:19px;margin:0 0 8px;font-weight:600;line-height:1.4}
+.insight p{margin:0;font-size:14.5px;line-height:1.85;color:var(--ink-2);max-width:72ch}
+.pgroup{margin:18px 0 0}
+.pgroup h5{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:0 0 8px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+.plist{list-style:none;margin:0;padding:0}
+.prow{display:grid;grid-template-columns:180px 118px 1fr;gap:14px;padding:9px 2px;border-bottom:1px dotted var(--line);align-items:baseline}
+.prow:last-child{border-bottom:0}
+.pname{font-weight:600;font-size:13.5px;color:var(--ink);border-bottom:1px solid transparent}
+.pname:hover{border-color:var(--ink)}
+.pvenue{font-family:var(--mono);font-size:10px;letter-spacing:.04em;color:var(--muted)}
+.pdesc{font-size:13px;line-height:1.6;color:var(--ink-2)}
+@media(max-width:760px){.prow{grid-template-columns:1fr;gap:2px;padding:10px 0}.pvenue{margin-bottom:2px}}
+.divergence{position:relative;margin:44px 0 60px;background:var(--ink);color:#f2ece1;padding:30px 34px 32px;border-radius:3px;overflow:hidden}
+.direction[data-accent="2"] .divergence{background:#12211f}
+.direction[data-accent="3"] .divergence{background:#161329}
+.divergence::after{content:"OPEN QUESTION";position:absolute;right:18px;bottom:-14px;font-family:var(--mono);font-size:64px;letter-spacing:.04em;color:rgba(255,255,255,.045);pointer-events:none;white-space:nowrap;font-weight:700}
+.divergence .k{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#f2ece1;margin-bottom:14px;opacity:.75}
+.divergence .k::before{content:"";width:7px;height:7px;background:var(--c1);border-radius:50%}
+.direction[data-accent="2"] .divergence .k::before{background:var(--c2)}
+.direction[data-accent="3"] .divergence .k::before{background:#8b7cf6}
+.divergence p{margin:0;font-family:var(--serif);font-size:clamp(16px,1.9vw,19px);line-height:1.8;color:#f7f2e9;max-width:64ch;position:relative;z-index:1}
+.divergence p strong{font-weight:600;color:#fff;box-shadow:inset 0 -.5em 0 rgba(255,255,255,.1)}
+@media(max-width:760px){.divergence{padding:22px 20px 24px;margin:32px 0 46px}}
+.cross{padding:70px 0 10px;border-bottom:1px solid var(--line-2);scroll-margin-top:110px}
+.cross h2{font-family:var(--serif);font-size:clamp(28px,3.6vw,44px);font-weight:600;margin:0 0 6px;letter-spacing:-.01em}
+.cross .lead{color:var(--ink-2);font-size:15px;margin:0 0 24px;max-width:52em}
+.personas{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:26px 0 0}
+.pcard{background:var(--paper);border:1px solid var(--line);border-radius:3px;padding:20px 22px}
+.pcard h4{font-family:var(--serif);font-size:17px;margin:0 0 14px;font-weight:600}
+.pcard dt{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:12px}
+.pcard dd{margin:4px 0 0;font-size:13px;line-height:1.7;color:var(--ink-2)}
+@media(max-width:900px){.personas{grid-template-columns:1fr}}
+.site-foot{padding:54px 0 76px;position:relative;z-index:1}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:36px;border-top:1px solid var(--line-2);padding-top:34px}
+.foot-grid h4{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:0 0 12px;font-weight:500}
+.foot-grid p{margin:0;font-size:12.8px;line-height:1.8;color:var(--muted)}
+.foot-grid p + p{margin-top:8px}
+.foot-brand{font-family:var(--serif);font-size:20px;margin:0 0 10px;color:var(--ink)}
+.foot-rule{margin-top:40px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-family:var(--mono);font-size:10.5px;color:var(--muted);letter-spacing:.06em}
+@media(max-width:760px){.foot-grid{grid-template-columns:1fr;gap:26px}}
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .6s cubic-bezier(.2,.7,.2,1),transform .6s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.entry.is-hidden,.subline.is-hidden{display:none}
+.direction.is-hidden{display:none}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.reveal{opacity:1;transform:none;transition:none}.progress{display:none}}
+@media print{.topbar,.filterbar,.progress,.divergence::after{display:none}body::before{display:none}.entry{page-break-inside:avoid}.divergence{background:#fff;color:#000;border:1px solid #000}.divergence p{color:#000}}
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress" aria-hidden="true"></div>
+<header class="topbar">
+  <a class="brand" href="#top" aria-label="回到顶部"><span class="mark" aria-hidden="true">路</span>
+    <span class="txt">技术路线索引<em>ROUTE INDEX / 2026</em></span></a>
+  <nav class="topnav" aria-label="方向导航">
+    <a href="#ad">自动驾驶</a><a href="#emb">具身</a><a href="#agent">Agent</a><a href="#cross">对照</a>
+  </nav>
+  <span class="topmeta">UPDATED 2026.10</span>
+</header>
+<main id="top"><div class="shell">
+
+<section class="hero">
+  <p class="eyebrow">技术路线索引 · 2026.10 · 路线图 / 对比 / 洞察 / 论文路径</p>
+  <h1>三条主线，<br><span class="thin">一张能对账的</span><span class="dot">路线图。</span></h1>
+  <p class="hero-sub">
+    面向<strong>自动驾驶规控</strong>、<strong>具身智能算法</strong>、<strong>Agent 系统</strong>三类读者。
+    每个方向给四层东西：一张<strong>技术路线图</strong>说清演进顺序，一张<strong>方案对比表</strong>摊开取舍，
+    一组带数字的<strong>关键条目</strong>，以及<strong>洞察</strong>与<strong>可点开的论文/仓库路径</strong>。
+    没给对照口径的，正文里照实标出来。
+  </p>
+  <div class="hero-meta">
+    <span class="pill">自动驾驶 · 停车距离与时延账</span>
+    <span class="pill">具身 · 数据缺口与部署后学习</span>
+    <span class="pill">Agent · Harness 与统计功效</span>
+  </div>
+  <div class="stats" aria-label="站点规模">
+    <div class="stat"><b>03</b><span>方向</span></div>
+    <div class="stat"><b>12</b><span>子线</span></div>
+    <div class="stat"><b>38</b><span>条目</span></div>
+    <div class="stat"><b>41</b><span>论文与仓库</span></div>
+  </div>
+  <div class="howto">
+    <div><b>STEP 01 / 看路线图</b><p>四段式演进：每个阶段标了代表方案与当期的核心约束。</p></div>
+    <div><b>STEP 02 / 读对比表</b><p>同一道题的不同答法，右侧永远写着“代价”那一列。</p></div>
+    <div><b>STEP 03 / 抄论文路径</b><p>按主题分组，链接直达 arXiv 原文或官方仓库。</p></div>
+  </div>
+</section>
+
+<div class="filterbar" role="group" aria-label="按条目类型筛选">
+  <span class="filter-label">Filter</span>
+  <button class="chip" data-filter="all" aria-pressed="true">全部 <span class="n" data-count="all">38</span></button>
+  <button class="chip" data-filter="开源" aria-pressed="false">开源 <span class="n" data-count="开源">0</span></button>
+  <button class="chip" data-filter="论文" aria-pressed="false">论文 <span class="n" data-count="论文">0</span></button>
+  <button class="chip" data-filter="框架" aria-pressed="false">框架 <span class="n" data-count="框架">0</span></button>
+  <button class="chip" data-filter="事件" aria-pressed="false">事件 <span class="n" data-count="事件">0</span></button>
+  <span class="filter-count" id="filterCount">SHOWING 38 / 38</span>
+</div>
+<section class="direction" id="ad" data-accent="1" aria-labelledby="ad-title"><div class="dir-head reveal"><div class="dir-index" aria-hidden="true">01</div><div class="dir-titles"><p class="dir-kicker">AUTONOMOUS DRIVING · 城区 NOA · 端到端 · 算力约束</p><h2 id="ad-title"><span class="swatch" style="background:var(--c1)" aria-hidden="true"></span>自动驾驶</h2></div><span class="dir-tag">4 子线 · 12 条目 · 12 论文</span></div><div class="narrative reveal"><span class="k">核心叙事</span><p>城区 NOA 下探 100-200 TOPS，端到端转 VLA+世界模型，算力架构未收敛。</p></div><div class="keynums"><div><b>42.7 万</b><span>2026.8 城市 NOA 装机</span></div><div><b>27.9%</b><span>同期渗透率</span></div><div><b>100-200 TOPS</b><span>主力方案算力带</span></div><div><b>6.7 m</b><span>200ms @ 120km/h 的位移</span></div></div><div class="sec-title reveal"><h3>技术路线图</h3><span class="hint">STAGE 01 → 04</span></div><div class="route"><div class="rstep"><span class="yr">2021–2023</span><h4>模块化 + BEV</h4><p>感知 / 预测 / 规划串行，规则与优化兜底</p><span class="rep">BEVFormer · VAD</span><span class="metric">以功能覆盖换可靠性</span></div><div class="rstep"><span class="yr">2024–2025</span><h4>两段式端到端</h4><p>感知大模型 + 规划头，仍留规则后处理</p><span class="rep">DriveVLM · LMDrive</span><span class="metric">拟人化提升，规则未走</span></div><div class="rstep"><span class="yr">2026</span><h4>一段式端到端</h4><p>单网络像素→轨迹，砍掉手写控制栈</p><span class="rep">FSD V14.3 · 智驾新程 128 TOPS</span><span class="metric">目标时延 <200ms、算力下探</span></div><div class="rstep"><span class="yr">2026 →</span><h4>VLA + 世界模型</h4><p>语义推理 + 未来帧推演，双系统协同</p><span class="rep">VLA-World · Infini-VLA</span><span class="metric">长尾可解释、可推演</span></div></div><div class="sec-title reveal"><h3>方案对比</h3><span class="hint">同一道题，四种答法</span></div><div class="cmp-wrap"><table class="cmp"><thead><tr><th>方案</th><th>代表</th><th>车端算力</th><th>强项</th><th>代价</th></tr></thead><tbody><tr><td>一段式端到端</td><td>FSD V14.3、智驾新程</td><td>100–200 TOPS</td><td>链路最短、维护成本最低</td><td>可解释性差、长尾回归难</td></tr><tr><td>VLA 双系统</td><td>DriveVLM、小鹏第二代 VLA</td><td>200–500 TOPS</td><td>语义泛化强、可解释</td><td>时延与算力压力大</td></tr><tr><td>WA 世界模型</td><td>华为 WA 路线</td><td>训练重、车端轻</td><td>长时程推演、数据效率</td><td>闭环验证与标准缺失</td></tr></tbody></table></div><div class="sec-title reveal"><h3>关键条目</h3><span class="hint">12 条 · 可按形态筛选</span></div><div class="subline reveal"><div class="subline-head"><span class="subline-num">子线 01</span><h3>端到端架构的工程现实</h3><span class="cnt">3 条</span></div><ol class="entries"><li class="entry" data-type="事件"><div class="entry-main"><h4 class="entry-name">智驾新程 · 一段式端到端</h4><span class="badge">事件</span></div><p class="entry-desc">单颗 128 TOPS 征程 6M 跑一段式，标称时延 <b>&lt;200ms</b>、比肩 200-500 TOPS，对标口径未披露。</p><span class="entry-link none" title="暂无公开一手链接">—</span></li><li class="entry" data-type="事件"><div class="entry-main"><h4 class="entry-name">特斯拉 FSD V14.3</h4><span class="badge">事件</span></div><p class="entry-desc">移除最后 <b>30 多万行</b>手写 C++ 控制代码，从像素直接输出转向/刹车/油门指令。</p><a class="entry-link" href="https://www.tesla.com/fsd" target="_blank" rel="noopener noreferrer">tesla.com ↗</a></li><li class="entry" data-type="事件"><div class="entry-main"><h4 class="entry-name">元戎启行 · 城市 NOA</h4><span class="badge">事件</span></div><p class="entry-desc">8 月城市 NOA 装机 <b>6.21 万台</b>、单月行业第二；同场演示 GPT-6 Astra 直控真车跑完全程。</p><a class="entry-link" href="https://deeproute.ai" target="_blank" rel="noopener noreferrer">deeproute.ai ↗</a></li></ol></div><div class="subline reveal"><div class="subline-head"><span class="subline-num">子线 02</span><h3>VLA 与世界模型的融合</h3><span class="cnt">3 条</span></div><ol class="entries"><li class="entry" data-type="论文"><div class="entry-main"><h4 class="entry-name">VLA-World（IEEE 2026）</h4><span class="badge">论文</span></div><p class="entry-desc">动作导出轨迹引导下一帧生成，再推理自生成未来帧精修轨迹；规划与生成双基准超纯 VLA 与纯世界模型。</p><a class="entry-link" href="https://arxiv.org/abs/2604.09059" target="_blank" rel="noopener noreferrer">arXiv ↗</a></li><li class="entry" data-type="框架"><div class="entry-main"><h4 class="entry-name">小鹏 第二代 VLA</h4><span class="badge">框架</span></div><p class="entry-desc">Infini-VLA 长时序留存 <b>30 秒</b>道路数据，X-Foresight 推演未来 <b>6 秒</b>，流式自回归并行感知-计算-输出。</p><a class="entry-link" href="https://www.xpeng.com" target="_blank" rel="noopener noreferrer">xpeng.com ↗</a></li><li class="entry" data-type="论文"><div class="entry-main"><h4 class="entry-name">纯反应式 VLA 的天花板</h4><span class="badge">论文</span></div><p class="entry-desc">LIBERO 成功率稳定 <b>98.5%+</b>，长时程多步骤任务因累积误差失效——世界模型被引入的直接原因。</p><span class="entry-link none" title="暂无公开一手链接">—</span></li></ol></div><div class="subline reveal"><div class="subline-head"><span class="subline-num">子线 03</span><h3>算力与成本约束下的工程取舍</h3><span class="cnt">3 条</span></div><ol class="entries"><li class="entry" data-type="事件"><div class="entry-main"><h4 class="entry-name">2026 年 8 月城市 NOA 装机</h4><span class="badge">事件</span></div><p class="entry-desc">全国约 <b>42.7 万台</b>、渗透率 <b>27.9%</b>，主力方案算力落在 <b>100-200 TOPS</b> 区间。</p><span class="entry-link none" title="暂无公开一手链接">—</span></li><li class="entry" data-type="事件"><div class="entry-main"><h4 class="entry-name">元戎 MPCI / 泛化用时</h4><span class="badge">事件</span></div><p class="entry-desc">以关键接管间隔里程替代 TOPS，但 MPCI 曲线仅为示意图、未标自家实测值。</p><span class="entry-link none" title="暂无公开一手链接">—</span></li><li class="entry" data-type="事件"><div class="entry-main"><h4 class="entry-name">文远知行 × 埃安 i60</h4><span class="badge">事件</span></div><p class="entry-desc"><b>10 万元级</b>车型用约 <b>200 TOPS</b> 跑辅助驾驶，口头订单 <b>两万台</b>。</p><a class="entry-link" href="https://www.weride.ai" target="_blank" rel="noopener noreferrer">weride.ai ↗</a></li></ol></div><div class="subline reveal"><div class="subline-head"><span class="subline-num">子线 04</span><h3>评测基准与数据资产</h3><span class="cnt">3 条</span></div><ol class="entries"><li class="entry" data-type="开源"><div class="entry-main"><h4 class="entry-name">nuScenes</h4><span class="badge">开源</span></div><p class="entry-desc"><b>1000 个</b>场景 × 20 秒（约 5.5 小时），32 线激光雷达 + 6 相机，约 140 万张相机图像。</p><a class="entry-link" href="https://www.nuscenes.org" target="_blank" rel="noopener noreferrer">nuscenes.org ↗</a></li><li class="entry" data-type="开源"><div class="entry-main"><h4 class="entry-name">Waymo Open Dataset</h4><span class="badge">开源</span></div><p class="entry-desc"><b>1950 段</b> 20 秒片段、约 <b>12.6M</b> 个 3D 标注框，闭环规划评测的常用底座。</p><a class="entry-link" href="https://waymo.com/open" target="_blank" rel="noopener noreferrer">waymo.com/open ↗</a></li><li class="entry" data-type="开源"><div class="entry-main"><h4 class="entry-name">nuPlan</h4><span class="badge">开源</span></div><p class="entry-desc"><b>1500 小时</b>真实驾驶数据、覆盖 <b>4 座</b>城市，专为闭环规划评测而建。</p><a class="entry-link" href="https://www.nuplan.org" target="_blank" rel="noopener noreferrer">nuplan.org ↗</a></li></ol></div><div class="sec-title reveal"><h3>洞察</h3><span class="hint">ANALYSIS</span></div><div class="insight reveal"><span class="fig">120 km/h = 33.3 m/s · 200 ms ≈ 6.7 m</span><h4>时延的计价单位是米，不是毫秒</h4><p>把 200ms 换成位移：以 120km/h 行驶，200ms 决策延迟等于 6.7 米的盲区；叠加 100→0 km/h 约 35–40 米的制动距离，系统级安全距离落在 42–47 米。这意味着单芯片方案要成立，必须把感知-预测-规划压进一次前向，任何串行专家都在吃安全余量。“比肩 200-500 TOPS”若不给场景与对照，这 6.7 米就无法被第三方复算。</p></div><div class="insight reveal"><span class="fig">42.7 ÷ 0.279 ≈ 153 万 · 元戎 6.21 万 ≈ 14.5% 份额</span><h4>42.7 万台 / 27.9% 反推出一个约 153 万台的月盘子</h4><p>这个反推说明城区 NOA 已经从旗舰配置变成主流选装，商业逻辑随之改变：既然是新车的常规配置，主控 BOM 就撑不起 500 TOPS，100-200 TOPS 成为主战场不是技术退让，而是成本结构的必然。元戎 8 月 6.21 万台约占大盘 14.5%，第二名的意义在于它用更低的算力带守住了份额。</p></div><div class="insight reveal"><span class="fig">MPCI 曲线“仅为示意图、未标自家实测值”</span><h4>TOPS 失效的根因：有效算力不可见</h4><p>同峰值算力下，内存带宽、算子融合、稀疏化决定实际吞吐，所以行业转向 MPCI（关键接管间隔里程）与“泛化用时”。但一个指标要能当采购依据，至少需要四件事：固定路线集、可复核的接管定义、公开的分母里程、置信区间。缺任何一项，指标就只是叙事——这也是“可审计”比“可炫耀”更难的地方。</p></div><div class="sec-title reveal"><h3>论文与开源路径</h3><span class="hint">12 篇 · 链接均已核验</span></div><div class="pgroup"><h5>端到端与规划</h5><ul class="plist"><li class="prow"><a class="pname" href="https://arxiv.org/abs/2212.10156" target="_blank" rel="noopener noreferrer">UniAD</a><span class="pvenue">CVPR 2023 最佳论文</span><span class="pdesc">检测/跟踪/建图/规划串成单网络，端到端规划的公认起点</span></li><li class="prow"><a class="pname" href="https://arxiv.org/abs/2303.12077" target="_blank" rel="noopener noreferrer">VAD</a><span class="pvenue">ICCV 2023</span><span class="pdesc">矢量化场景表示，推理更快、可解释性更好</span></li><li class="prow"><a class="pname" href="https://arxiv.org/abs/2203.17270" target="_blank" rel="noopener noreferrer">BEVFormer</a><span class="pvenue">ECCV 2022</span><span class="pdesc">BEV 时空特征，模块化方案的公共底座</span></li><li class="prow"><a class="pname" href="https://arxiv.org/abs/2402.12289" target="_blank" rel="noopener noreferrer">DriveVLM</a><span class="pvenue">arXiv 2024</span><span class="pdesc">快慢双系统：VLM 做慢思考，小模型做快执行</span></li><li class="prow"><a class="pname" href="https://arxiv.org/abs/2312.07488" target="_blank" rel="noopener noreferrer">LMDrive</a><span class="pvenue">CVPR 2024</span><span class="pdesc">闭环语言指令驾驶，VLA 在驾驶域的前身</span></li></ul></div><div class="pgroup"><h5>世界模型</h5><ul class="plist"><li class="prow"><a class="pname" href="https://arxiv.org/abs/2309.17080" target="_blank" rel="noopener noreferrer">GAIA-1</a><span class="pvenue">arXiv 2023</span><span class="pdesc">生成式驾驶世界模型，用视频预测学动力学</span></li><li class="prow"><a class="pname" href="https://arxiv.org/abs/2309.09777" target="_blank" rel="noopener noreferrer">DriveDreamer</a><span class="pvenue">ECCV 2024</span><span class="pdesc">真实世界驱动的驾驶场景生成</span></li><li class="prow"><a class="pname" href="https://arxiv.org/abs/2311.16038" target="_blank" rel="noopener noreferrer">OccWorld</a><span class="pvenue">ECCV 2024</span><span class="pdesc">3D 占据自监督世界模型，直接预测未来占据</span></li><li class="prow"><a class="pname" href="https://arxiv.org/abs/2604.09059" target="_blank" rel="noopener noreferrer">VLA-World</a><span class="pvenue">IEEE 2026</span><span class="pdesc">动作导出轨迹引导未来帧生成，再用自生成帧精修轨迹</span></li><li class="prow"><a class="pname" href="https://arxiv.org/abs/2605.24892" target="_blank" rel="noopener noreferrer">X-Foresight</a><span class="pvenue">arXiv 2026</span><span class="pdesc">视觉-动作联合因果预测，基于预测式世界模型推演未来</span></li></ul></div><div class="pgroup"><h5>基准与仿真</h5><ul class="plist"><li class="prow"><a class="pname" href="https://arxiv.org/abs/1903.11027" target="_blank" rel="noopener noreferrer">nuScenes</a><span class="pvenue">NeurIPS 2019</span><span class="pdesc">1000 场景多模态数据集，行业公共分母</span></li><li class="prow"><a class="pname" href="https://arxiv.org/abs/2106.11810" target="_blank" rel="noopener noreferrer">nuPlan</a><span class="pvenue">arXiv 2021</span><span class="pdesc">闭环规划基准，1500 小时真实驾驶数据</span></li></ul></div><div class="divergence reveal"><span class="k">关键分歧</span><p>VLA 路线（理想、小鹏）与 WA 世界模型路线（华为）在 2026 年正面峙，但真正的分水岭不是“谁对”，而是<strong>“谁能在 200 TOPS 以内把长尾场景的接管里程做到可审计”</strong>。</p></div></section><section class="direction" id="emb" data-accent="2" aria-labelledby="emb-title"><div class="dir-head reveal"><div class="dir-index" aria-hidden="true">02</div><div class="dir-titles"><p class="dir-kicker">EMBODIED AI · 基座模型 · 世界模型 · 部署后学习</p><h2 id="emb-title"><span class="swatch" style="background:var(--c2)" aria-hidden="true"></span>具身</h2></div><span class="dir-tag">4 子线 · 14 条目 · 12 论文</span></div><div class="narrative reveal"><span class="k">核心叙事</span><p>LIBERO 98.5% 已触顶，真机长时程失败，转基座+部署学习+Agent。</p></div><div class="keynums"><div><b>98.5%+</b><span>LIBERO 基准成功率</span></div><div><b>50 万 h</b><span>国内合规真机数据</span></div><div><b>>99%</b><span>与商业化需求的缺口</span></div><div><b>3.0×</b><span>首日 28.6% → 5 天 85.7%</span></div></div><div class="sec-title reveal"><h3>技术路线图</h3><span class="hint">STAGE 01 → 04</span></div><div class="route"><div class="rstep"><span class="yr">2023–2024</span><h4>单体 VLA</h4><p>一个大模型吃下感知-语言-动作</p><span class="rep">RT-2 · OpenVLA · π0</span><span class="metric">跨本体泛化</span></div><div class="rstep"><span class="yr">2024–2025</span><h4>分层与数据规模化</h4><p>大小脑分层 + 跨本体数据灌入</p><span class="rep">Octo · Open X-Embodiment</span><span class="metric">可微调、可复制</span></div><div class="rstep"><span class="yr">2026</span><h4>世界模型入场</h4><p>视频预测当“想象层”，先推演再决策</p><span class="rep">UniSim · V-JEPA · UnifoLM</span><span class="metric">长时程不累积误差</span></div><div class="rstep"><span class="yr">2026 →</span><h4>部署后学习</h4><p>失败回流、策略固化、断点续作</p><span class="rep">Genie Master · Physical RSI</span><span class="metric">千台边际成本</span></div></div><div class="sec-title reveal"><h3>方案对比</h3><span class="hint">同一道题，四种答法</span></div><div class="cmp-wrap"><table class="cmp"><thead><tr><th>路线</th><th>代表</th><th>数据/算力</th><th>强项</th><th>短板</th></tr></thead><tbody><tr><td>单体 VLA</td><td>π0、OpenVLA、Figure</td><td>万小时级示教</td><td>泛化好、接口简单</td><td>长时程累积误差</td></tr><tr><td>大小脑分层</td><td>分层 VLA 路线</td><td>分技能采数</td><td>可解释、可局部替换</td><td>层间对齐成本高</td></tr><tr><td>世界模型基座</td><td>UniSim、UnifoLM</td><td>训练重、闭环慢</td><td>显式推演、数据效率高</td><td>缺统一评测标尺</td></tr></tbody></table></div><div class="sec-title reveal"><h3>关键条目</h3><span class="hint">14 条 · 可按形态筛选</span></div><div class="subline reveal"><div class="subline-head"><span class="subline-num">子线 01</span><h3>VLA 基座的能力边界</h3><span class="cnt">4 条</span></div><ol class="entries"><li class="entry" data-type="论文"><div class="entry-main"><h4 class="entry-name">VLA 基准天花板（LIBERO）</h4><span class="badge">论文</span></div><p class="entry-desc">测试环境逼近体系上限（<b>98.5%+</b>），纯反应式无未来状态显式推理，长时程累积误差。</p><a class="entry-link" href="https://arxiv.org/abs/2306.03310" target="_blank" rel="noopener noreferrer">arXiv ↗</a></li><li class="entry" data-type="框架"><div class="entry-main"><h4 class="entry-name">Physical Intelligence π0.7</h4><span class="badge">框架</span></div><p class="entry-desc">当前前沿 VLA 之一，主打跨本体泛化；与 Figure 的 VLA 分层路线构成两种工程取向。</p><a class="entry-link" href="https://www.physicalintelligence.company" target="_blank" rel="noopener noreferrer">pi.company ↗</a></li><li class="entry" data-type="框架"><div class="entry-main"><h4 class="entry-name">Figure AI</h4><span class="badge">框架</span></div><p class="entry-desc">聚焦 VLA 分层路线，BotQ 产线设计年产能 <b>1.2 万台</b>，已在工业与消费场景部署。</p><a class="entry-link" href="https://www.figure.ai" target="_blank" rel="noopener noreferrer">figure.ai ↗</a></li><li class="entry" data-type="开源"><div class="entry-main"><h4 class="entry-name">宇树 UnifoLM-OminiA-0.3</h4><span class="badge">开源</span></div><p class="entry-desc"><b>2026 年 7 月</b>推出，走视频预测的世界模型路线，与 VLA 双线并行。</p><a class="entry-link" href="https://www.unitree.com" target="_blank" rel="noopener noreferrer">unitree.com ↗</a></li></ol></div><div class="subline reveal"><div class="subline-head"><span class="subline-num">子线 02</span><h3>世界模型作为“想象层”</h3><span class="cnt">3 条</span></div><ol class="entries"><li class="entry" data-type="事件"><div class="entry-main"><h4 class="entry-name">广发证券 · 具身模型研判</h4><span class="badge">事件</span></div><p class="entry-desc">身处“前 GPT 时代”：大小脑分层、VLA、世界模型三线并行，类 Scaling Law 收敛法则尚未出现。</p><span class="entry-link none" title="暂无公开一手链接">—</span></li><li class="entry" data-type="事件"><div class="entry-main"><h4 class="entry-name">世界模型“先想象、再决策、后执行”</h4><span class="badge">事件</span></div><p class="entry-desc">最接近理解物理世界的远期形态，但尚处初期，缺乏统一评测标尺。</p><span class="entry-link none" title="暂无公开一手链接">—</span></li><li class="entry" data-type="事件"><div class="entry-main"><h4 class="entry-name">物理交互数据缺口</h4><span class="badge">事件</span></div><p class="entry-desc">国内合规真实物理交互数据约 <b>50 万小时</b>，商业化需数千万小时，缺口超 <b>99%</b>。</p><span class="entry-link none" title="暂无公开一手链接">—</span></li></ol></div><div class="subline reveal"><div class="subline-head"><span class="subline-num">子线 03</span><h3>部署后学习与 Physical RSI</h3><span class="cnt">4 条</span></div><ol class="entries"><li class="entry" data-type="事件"><div class="entry-main"><h4 class="entry-name">智元 Genie Master</h4><span class="badge">事件</span></div><p class="entry-desc"><b>2026.10</b> 发布：精灵 G2 在真实便利店自主定位失败原因，成功率 <b>28.6% → 85.7%</b>（5 天）。</p><a class="entry-link" href="https://www.agibot.com" target="_blank" rel="noopener noreferrer">agibot.com ↗</a></li><li class="entry" data-type="框架"><div class="entry-main"><h4 class="entry-name">Harness RSI + Policy RSI</h4><span class="badge">框架</span></div><p class="entry-desc">经验写入长期记忆、调整固化进动作策略参数，让失败经验可复用而非重来。</p><span class="entry-link none" title="暂无公开一手链接">—</span></li><li class="entry" data-type="框架"><div class="entry-main"><h4 class="entry-name">EEP 具身执行协议</h4><span class="badge">框架</span></div><p class="entry-desc">统一能力/引导/反馈/连续性接口，失败后从断点续作，而不是从头再来。</p><span class="entry-link none" title="暂无公开一手链接">—</span></li><li class="entry" data-type="事件"><div class="entry-main"><h4 class="entry-name">部署经济学</h4><span class="badge">事件</span></div><p class="entry-desc">回应“部署到第 <b>1000 台</b>边际成本怎么降”，而不是单纯刷技术指标。</p><span class="entry-link none" title="暂无公开一手链接">—</span></li></ol></div><div class="subline reveal"><div class="subline-head"><span class="subline-num">子线 04</span><h3>开源数据与本体生态</h3><span class="cnt">3 条</span></div><ol class="entries"><li class="entry" data-type="开源"><div class="entry-main"><h4 class="entry-name">Open X-Embodiment</h4><span class="badge">开源</span></div><p class="entry-desc">汇集 <b>60 个</b>数据集、<b>22 种</b>机器人本体、超 <b>100 万条</b>轨迹，RT-X 系列由此训练。</p><a class="entry-link" href="https://arxiv.org/abs/2310.08864" target="_blank" rel="noopener noreferrer">arXiv ↗</a></li><li class="entry" data-type="事件"><div class="entry-main"><h4 class="entry-name">宇树 G1</h4><span class="badge">事件</span></div><p class="entry-desc">人形机器人 <b>9.9 万元</b>起，把本体门槛拉到消费级。</p><a class="entry-link" href="https://www.unitree.com/g1" target="_blank" rel="noopener noreferrer">unitree.com/g1 ↗</a></li><li class="entry" data-type="开源"><div class="entry-main"><h4 class="entry-name">AgiBot World</h4><span class="badge">开源</span></div><p class="entry-desc">百万级真机轨迹、<b>217 个</b>任务、<b>106 个</b>场景，面向通用操作。</p><a class="entry-link" href="https://agibot-world.com" target="_blank" rel="noopener noreferrer">agibot-world.com ↗</a></li></ol></div><div class="sec-title reveal"><h3>洞察</h3><span class="hint">ANALYSIS</span></div><div class="insight reveal"><span class="fig">LIBERO 98.5%+ · 继续刷分的信息量趋近 0</span><h4>98.5% 是评测饱和，不是能力饱和</h4><p>当基准成功率贴近评测方差，排行榜上再涨 0.3 个点已经不可区分。真正有信息量的是“10 分钟长任务的累计成功率”——它会把每一次误差累积都算进去。世界模型被引入的本质，是把误差累积从执行期前移到想象期：先在 6 秒的未来里试错，再决定动不动。</p></div><div class="insight reveal"><span class="fig">1000 台 × 10 h/天 × 300 天 = 300 万 h/年 · 补 3000 万 h 需 10 年</span><h4>50 万小时 vs 数千万小时：靠采样补不上</h4><p>按 1000 台机器人、每天 10 小时、一年 300 天算，一年只能产生 300 万小时真机数据；要从 50 万小时补到 3000 万小时，需要十年。这就是“仿真合成 + 部署后学习”不是选修课的原因：数据缺口 >99% 时，唯一可扩展的变量是单位数据的复用次数，而不是采集人数。</p></div><div class="insight reveal"><span class="fig">3.0× 提升 · 5 天收敛 · n=1 场景</span><h4>28.6%→85.7% 的价值在“首日不需要人工示范”</h4><p>若每台新机都要工程师现场示教，第 1000 台的边际成本不会下降。Physical RSI 把“修复”变成可复用资产，改的是成本曲线而不是单点指标。但证据强度必须说清楚：这是单场景、单机型的观测，第三方尚未复现，属于强信号、弱证据。</p></div><div class="sec-title reveal"><h3>论文与开源路径</h3><span class="hint">12 篇 · 链接均已核验</span></div><div class="pgroup"><h5>VLA 基座</h5><ul class="plist"><li class="prow"><a class="pname" href="https://arxiv.org/abs/2307.15818" target="_blank" rel="noopener noreferrer">RT-2</a><span class="pvenue">CoRL 2023</span><span class="pdesc">把 web 知识迁到机器人控制，VLA 概念定型</span></li><li class="prow"><a class="pname" href="https://arxiv.org/abs/2406.09246" target="_blank" rel="noopener noreferrer">OpenVLA</a><span class="pvenue">arXiv 2024</span><span class="pdesc">7B 开源 VLA，可复现的公共基线</span></li><li class="prow"><a class="pname" href="https://arxiv.org/abs/2410.24164" target="_blank" rel="noopener noreferrer">π0</a><span class="pvenue">arXiv 2024</span><span class="pdesc">flow matching 通用策略，跨本体动作生成</span></li><li class="prow"><a class="pname" href="https://arxiv.org/abs/2405.12213" target="_blank" rel="noopener noreferrer">Octo</a><span class="pvenue">RSS 2024</span><span class="pdesc">开源通用策略，多本体多任务可微调</span></li><li class="prow"><a class="pname" href="https://arxiv.org/abs/2303.04137" target="_blank" rel="noopener noreferrer">Diffusion Policy</a><span class="pvenue">RSS 2023</span><span class="pdesc">动作扩散，处理多模态示教</span></li></ul></div><div class="pgroup"><h5>数据与基准</h5><ul class="plist"><li class="prow"><a class="pname" href="https://arxiv.org/abs/2310.08864" target="_blank" rel="noopener noreferrer">Open X-Embodiment</a><span class="pvenue">arXiv 2023</span><span class="pdesc">22 种本体、百万级轨迹的跨本体数据集</span></li><li class="prow"><a class="pname" href="https://arxiv.org/abs/2306.03310" target="_blank" rel="noopener noreferrer">LIBERO</a><span class="pvenue">arXiv 2023</span><span class="pdesc">终身学习基准，98.5% 这个数字就出自这里</span></li></ul></div><div class="pgroup"><h5>世界模型与部署后学习</h5><ul class="plist"><li class="prow"><a class="pname" href="https://arxiv.org/abs/2301.04104" target="_blank" rel="noopener noreferrer">DreamerV3</a><span class="pvenue">Nature 2025</span><span class="pdesc">世界模型 RL，单一超参跨域通用</span></li><li class="prow"><a class="pname" href="https://arxiv.org/abs/2404.08471" target="_blank" rel="noopener noreferrer">V-JEPA</a><span class="pvenue">arXiv 2024</span><span class="pdesc">视频自监督预测，学物理世界的表征</span></li><li class="prow"><a class="pname" href="https://arxiv.org/abs/2310.06114" target="_blank" rel="noopener noreferrer">UniSim</a><span class="pvenue">arXiv 2023</span><span class="pdesc">交互式真实世界模拟器，支持闭环仿真</span></li><li class="prow"><a class="pname" href="https://arxiv.org/abs/2607.18060" target="_blank" rel="noopener noreferrer">RoboHarness</a><span class="pvenue">arXiv 2026</span><span class="pdesc">异构策略的记忆驱动编排，面向长时程规划</span></li><li class="prow"><a class="pname" href="https://arxiv.org/abs/2610.18842" target="_blank" rel="noopener noreferrer">Physical RSI</a><span class="pvenue">arXiv 2026</span><span class="pdesc">物理递归自我改进的观测性 scaling law</span></li></ul></div><div class="divergence reveal"><span class="k">关键分歧</span><p>VLA 基座与世界模型基座的分野在 2026 年并未消失，但更实际的追问是——当模型在基准上已经“够好”，真机失败该归因于模型能力，还是归因于<strong>缺乏让失败数据回流并自动修复的工程闭环</strong>；智元的答案是后者，其 Physical RSI 的可复制性仍未获第三方验证。</p></div></section><section class="direction" id="agent" data-accent="3" aria-labelledby="agent-title"><div class="dir-head reveal"><div class="dir-index" aria-hidden="true">03</div><div class="dir-titles"><p class="dir-kicker">AGENT SYSTEMS · 框架格局 · Harness · 具身交叉</p><h2 id="agent-title"><span class="swatch" style="background:var(--c3)" aria-hidden="true"></span>Agent</h2></div><span class="dir-tag">4 子线 · 12 条目 · 17 论文</span></div><div class="narrative reveal"><span class="k">核心叙事</span><p>框架格局已收敛，矛盾转向 Harness 可靠性：基准近人类，长程仍脆弱。</p></div><div class="keynums"><div><b>500 题</b><span>SWE-bench Verified</span></div><div><b>±4.4 pp</b><span>500 题的 95% 置信区间</span></div><div><b>15.2–50.0%</b><span>HarnessFix 相对增益</span></div><div><b>122</b><span>HarnessTester 检出 bug 数</span></div></div><div class="sec-title reveal"><h3>技术路线图</h3><span class="hint">STAGE 01 → 04</span></div><div class="route"><div class="rstep"><span class="yr">2022–2023</span><h4>Prompt 编排</h4><p>手写 ReAct 循环，靠提示词串工具</p><span class="rep">ReAct · Reflexion</span><span class="metric">先跑通</span></div><div class="rstep"><span class="yr">2024–2025</span><h4>框架分工</h4><p>状态图 / 角色 DSL / 少原语三条路</p><span class="rep">LangGraph · CrewAI · OpenAI SDK</span><span class="metric">可上生产</span></div><div class="rstep"><span class="yr">2026</span><h4>Harness 工程</h4><p>工具、上下文、记忆、权限、熔断五件事</p><span class="rep">HarnessFix · HarnessTester</span><span class="metric">可靠、可测</span></div><div class="rstep"><span class="yr">2026 →</span><h4>进物理世界</h4><p>VLM 决策 + 技能库执行 + 上下文纠错</p><span class="rep">AgentVLN</span><span class="metric">边缘实时</span></div></div><div class="sec-title reveal"><h3>方案对比</h3><span class="hint">同一道题，四种答法</span></div><div class="cmp-wrap"><table class="cmp"><thead><tr><th>框架</th><th>模型</th><th>控制流</th><th>上手成本</th><th>风险</th></tr></thead><tbody><tr><td>LangGraph</td><td>状态图 + 持久状态</td><td>最强（重试/检查点/中断）</td><td>高，样板多</td><td>抽象重，早期迭代慢</td></tr><tr><td>CrewAI</td><td>角色 DSL</td><td>中，适合流水线</td><td>最低，约 20 行</td><td>复杂控制流要自己补</td></tr><tr><td>OpenAI Agents SDK</td><td>3 原语（Agent/Handoff/Guardrail）</td><td>轻，缺图状态机</td><td>最低，5 行</td><td>生态锁定</td></tr></tbody></table></div><div class="sec-title reveal"><h3>关键条目</h3><span class="hint">12 条 · 可按形态筛选</span></div><div class="subline reveal"><div class="subline-head"><span class="subline-num">子线 01</span><h3>框架格局与选型逻辑</h3><span class="cnt">3 条</span></div><ol class="entries"><li class="entry" data-type="框架"><div class="entry-main"><h4 class="entry-name">LangGraph</h4><span class="badge">框架</span></div><p class="entry-desc">状态图模型（显式节点/边/持久状态），2026 年初 stars 超 CrewAI；适合重试、检查点、人工介入。</p><a class="entry-link" href="https://github.com/langchain-ai/langgraph" target="_blank" rel="noopener noreferrer">github ↗</a></li><li class="entry" data-type="框架"><div class="entry-main"><h4 class="entry-name">CrewAI</h4><span class="badge">框架</span></div><p class="entry-desc">角色 DSL，约 <b>20 行</b>代码跑通多 Agent 演示、学习曲线最低；复杂度上来后部分团队迁往 LangGraph。</p><a class="entry-link" href="https://github.com/crewAIInc/crewAI" target="_blank" rel="noopener noreferrer">github ↗</a></li><li class="entry" data-type="框架"><div class="entry-main"><h4 class="entry-name">OpenAI Agents SDK</h4><span class="badge">框架</span></div><p class="entry-desc">核心原语仅 <b>3 个</b>（Agent/Handoff/Guardrail），<b>5 行</b>启动，接评估/微调/蒸馏，代价是生态锁定。</p><a class="entry-link" href="https://github.com/openai/openai-agents-python" target="_blank" rel="noopener noreferrer">github ↗</a></li></ol></div><div class="subline reveal"><div class="subline-head"><span class="subline-num">子线 02</span><h3>Harness 作为可靠性瓶颈</h3><span class="cnt">3 条</span></div><ol class="entries"><li class="entry" data-type="事件"><div class="entry-main"><h4 class="entry-name">Agent = Model + Harness</h4><span class="badge">事件</span></div><p class="entry-desc">Harness 负责工具集成、上下文管理、记忆调度、权限管控、熔断审计。</p><span class="entry-link none" title="暂无公开一手链接">—</span></li><li class="entry" data-type="论文"><div class="entry-main"><h4 class="entry-name">HarnessFix</h4><span class="badge">论文</span><span class="entry-sub">arXiv 2026.06 · SWE-Bench Verified / Terminal-Bench 2.0 / GAIA / AppWorld</span></div><p class="entry-desc">失败轨迹编译为 Harness-aware Trace IR，归因到步骤与 Harness 层生成补丁；四基准提升 <b>15.2%-50.0%</b>。</p><a class="entry-link" href="https://arxiv.org/abs/2606.06324" target="_blank" rel="noopener noreferrer">arXiv ↗</a></li><li class="entry" data-type="论文"><div class="entry-main"><h4 class="entry-name">HarnessTester</h4><span class="badge">论文</span></div><p class="entry-desc">首个 Harness 导向的测试生成，在 OpenClaw 等系统检出 <b>122 个</b>真实 bug（<b>88</b> 个先前未知、<b>69</b> 个已确认）。</p><a class="entry-link" href="https://arxiv.org/abs/2610.04921" target="_blank" rel="noopener noreferrer">arXiv ↗</a></li></ol></div><div class="subline reveal"><div class="subline-head"><span class="subline-num">子线 03</span><h3>Agent 与具身的交叉</h3><span class="cnt">3 条</span></div><ol class="entries"><li class="entry" data-type="论文"><div class="entry-main"><h4 class="entry-name">AgentVLN（ECCV 2026）</h4><span class="badge">论文</span></div><p class="entry-desc">VLM-as-Brain：<b>3B</b> 模型在 R2R-CE / RxR-CE 领先，并支持 Jetson 边缘实时运行。</p><a class="entry-link" href="https://arxiv.org/abs/2603.17670" target="_blank" rel="noopener noreferrer">arXiv ↗</a></li><li class="entry" data-type="框架"><div class="entry-main"><h4 class="entry-name">跨空间表示映射</h4><span class="badge">框架</span></div><p class="entry-desc">先用 SLAM 算三维可行路径，再投影到二维图像：把“开放坐标生成”变成“视觉提示路径选择”。</p><span class="entry-link none" title="暂无公开一手链接">—</span></li><li class="entry" data-type="框架"><div class="entry-main"><h4 class="entry-name">上下文驱动自我纠错</h4><span class="badge">框架</span></div><p class="entry-desc">遇遮挡或偏差时按历史上下文重选路径点，而不是按原计划硬走。</p><span class="entry-link none" title="暂无公开一手链接">—</span></li></ol></div><div class="subline reveal"><div class="subline-head"><span class="subline-num">子线 04</span><h3>评测基准与安全边界</h3><span class="cnt">3 条</span></div><ol class="entries"><li class="entry" data-type="开源"><div class="entry-main"><h4 class="entry-name">SWE-bench Verified</h4><span class="badge">开源</span></div><p class="entry-desc"><b>500 道</b>经人工验证的 GitHub issue 修复题，编码 Agent 的主评测集。</p><a class="entry-link" href="https://www.swebench.com" target="_blank" rel="noopener noreferrer">swebench.com ↗</a></li><li class="entry" data-type="开源"><div class="entry-main"><h4 class="entry-name">GAIA</h4><span class="badge">开源</span></div><p class="entry-desc"><b>466 道</b>需搜索 + 工具 + 多步推理的题：人类约 <b>92%</b>，GPT-4 插件仅 <b>15%</b>。</p><a class="entry-link" href="https://arxiv.org/abs/2311.12983" target="_blank" rel="noopener noreferrer">arXiv ↗</a></li><li class="entry" data-type="开源"><div class="entry-main"><h4 class="entry-name">OSWorld</h4><span class="badge">开源</span></div><p class="entry-desc"><b>369 个</b>真实桌面任务，覆盖 Ubuntu / Windows / macOS 三系统。</p><a class="entry-link" href="https://arxiv.org/abs/2404.07972" target="_blank" rel="noopener noreferrer">arXiv ↗</a></li></ol></div><div class="sec-title reveal"><h3>洞察</h3><span class="hint">ANALYSIS</span></div><div class="insight reveal"><span class="fig">HarnessFix：SWE-bench Verified / Terminal-Bench 2.0 / GAIA / AppWorld</span><h4>同一模型，换个 Harness 差 15.2%–50.0%</h4><p>这条数字最直接的用途不是“又一个 SOTA”，而是说明模型排行榜不能预测生产表现。团队在做技术选型时，应该把 Harness 版本（工具集、上下文策略、权限模型）写进评测口径，否则同一模型的两份测评结果根本不可比——这也是“Agent 工程”第一次有了类似“硬件配置”的东西。</p></div><div class="insight reveal"><span class="fig">n = 500，p ≈ 0.5 时 95% CI ≈ ±4.4 个百分点</span><h4>500 题上的 1-2 个点不显著</h4><p>SWE-bench Verified 的 500 道题，决定了榜首几名之间的差距很可能只是抽样噪声。按二项分布算，±4.4 个百分点的置信区间意味着：真正值得看的是失败模式分布（改错文件、跳过测试、上下文溢出），而不是总分小数位。这也解释了为什么 HarnessTester 这类“测试充分性”工作比刷榜更有价值。</p></div><div class="insight reveal"><span class="fig">隐藏率 72% · bug 密度高于模型缺陷密度</span><h4>122 个 bug 里 88 个先前未知</h4><p>如果 122 个真实 Harness bug 中有 88 个此前未被发现，说明这类缺陷既不在 benchmark 里，也不在团队的回归测试里。这就是“Agent = Model + Harness”的工程含义：可靠性预算应该按 Harness 的复杂度分配，而不是按模型参数量分配。</p></div><div class="sec-title reveal"><h3>论文与开源路径</h3><span class="hint">17 篇 · 链接均已核验</span></div><div class="pgroup"><h5>框架（仓库）</h5><ul class="plist"><li class="prow"><a class="pname" href="https://github.com/langchain-ai/langgraph" target="_blank" rel="noopener noreferrer">LangGraph</a><span class="pvenue">GitHub</span><span class="pdesc">状态图 + 持久化 + 中断恢复，生产向编排</span></li><li class="prow"><a class="pname" href="https://github.com/crewAIInc/crewAI" target="_blank" rel="noopener noreferrer">CrewAI</a><span class="pvenue">GitHub</span><span class="pdesc">角色 DSL，最快跑通多 Agent</span></li><li class="prow"><a class="pname" href="https://github.com/openai/openai-agents-python" target="_blank" rel="noopener noreferrer">OpenAI Agents SDK</a><span class="pvenue">GitHub</span><span class="pdesc">Agent / Handoff / Guardrail 三原语</span></li></ul></div><div class="pgroup"><h5>Harness 与修复</h5><ul class="plist"><li class="prow"><a class="pname" href="https://arxiv.org/abs/2606.06324" target="_blank" rel="noopener noreferrer">HarnessFix</a><span class="pvenue">arXiv 2026</span><span class="pdesc">失败轨迹 → Trace IR，归因 Harness 缺陷并生成补丁</span></li><li class="prow"><a class="pname" href="https://arxiv.org/abs/2610.04921" target="_blank" rel="noopener noreferrer">HarnessTester</a><span class="pvenue">arXiv 2026</span><span class="pdesc">Harness 导向的测试生成，122 个真实 bug</span></li><li class="prow"><a class="pname" href="https://arxiv.org/abs/2405.15793" target="_blank" rel="noopener noreferrer">SWE-agent</a><span class="pvenue">NeurIPS 2024</span><span class="pdesc">提出 ACI（agent-computer interface）</span></li><li class="prow"><a class="pname" href="https://arxiv.org/abs/2407.16741" target="_blank" rel="noopener noreferrer">OpenHands</a><span class="pvenue">ICLR 2025</span><span class="pdesc">开源软件工程 Agent 平台</span></li></ul></div><div class="pgroup"><h5>评测基准</h5><ul class="plist"><li class="prow"><a class="pname" href="https://arxiv.org/abs/2310.06770" target="_blank" rel="noopener noreferrer">SWE-bench</a><span class="pvenue">ICLR 2024</span><span class="pdesc">真实 GitHub issue 修复基准</span></li><li class="prow"><a class="pname" href="https://arxiv.org/abs/2311.12983" target="_blank" rel="noopener noreferrer">GAIA</a><span class="pvenue">ICLR 2024</span><span class="pdesc">466 道需工具与多步推理的题</span></li><li class="prow"><a class="pname" href="https://arxiv.org/abs/2404.07972" target="_blank" rel="noopener noreferrer">OSWorld</a><span class="pvenue">NeurIPS 2024</span><span class="pdesc">369 个真实桌面任务</span></li><li class="prow"><a class="pname" href="https://arxiv.org/abs/2307.13854" target="_blank" rel="noopener noreferrer">WebArena</a><span class="pvenue">ICLR 2024</span><span class="pdesc">真实网站环境基准</span></li><li class="prow"><a class="pname" href="https://arxiv.org/abs/2406.12045" target="_blank" rel="noopener noreferrer">τ-bench</a><span class="pvenue">arXiv 2024</span><span class="pdesc">工具-用户交互的真实业务场景</span></li></ul></div><div class="pgroup"><h5>基础与具身交叉</h5><ul class="plist"><li class="prow"><a class="pname" href="https://arxiv.org/abs/2210.03629" target="_blank" rel="noopener noreferrer">ReAct</a><span class="pvenue">ICLR 2023</span><span class="pdesc">推理与行动交替的范式</span></li><li class="prow"><a class="pname" href="https://arxiv.org/abs/2303.11366" target="_blank" rel="noopener noreferrer">Reflexion</a><span class="pvenue">NeurIPS 2023</span><span class="pdesc">语言化反思，用失败经验改策略</span></li><li class="prow"><a class="pname" href="https://arxiv.org/abs/2603.17670" target="_blank" rel="noopener noreferrer">AgentVLN</a><span class="pvenue">ECCV 2026</span><span class="pdesc">VLM-as-Brain 的导航 Agent</span></li><li class="prow"><a class="pname" href="https://arxiv.org/abs/2004.02857" target="_blank" rel="noopener noreferrer">VLN-CE</a><span class="pvenue">arXiv 2020</span><span class="pdesc">连续环境下的视觉语言导航</span></li><li class="prow"><a class="pname" href="https://arxiv.org/abs/2010.07954" target="_blank" rel="noopener noreferrer">RxR</a><span class="pvenue">arXiv 2020</span><span class="pdesc">多语言、稠密时空对齐的导航基准</span></li></ul></div><div class="divergence reveal"><span class="k">关键分歧</span><p>框架选型已不再是真正的难题，分水岭在于 Agent 的可靠性该靠“更好的模型”还是<strong>“更好的 Harness 工程与测试”</strong>——HarnessFix / HarnessTester 押注后者，但只在软件 Agent 场景验证；具身“物理试错代价高、失败不可回滚”，让 Harness 层的容错难一个量级。</p></div></section>
+<section class="cross" id="cross" aria-labelledby="cross-title">
+  <div class="reveal">
+    <p class="dir-kicker" style="font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;color:var(--muted);margin:0 0 8px;text-transform:uppercase">CROSS-CUTTING</p>
+    <h2 id="cross-title">三条线，其实在答同一道题</h2>
+    <p class="lead">把三个方向并排放，会发现它们在同一年做同一件事：把叙事从“模型有多强”换成“系统失败时能不能被定位、被复现、被修复”。</p>
+  </div>
+  <div class="cmp-wrap reveal"><table class="cmp"><thead><tr><th>方向</th><th>主要瓶颈</th><th>可审计指标</th><th>仍然缺什么</th></tr></thead><tbody><tr><td>自动驾驶</td><td>BOM 与长尾场景</td><td>接管间隔里程（MPCI）</td><td>公开分母 + 统一接管定义</td></tr><tr><td>具身</td><td>真机数据与长时程</td><td>长任务成功率、首日成功率</td><td>统一评测标尺 + 第三方复现</td></tr><tr><td>Agent</td><td>Harness 可靠性</td><td>失败归因率、Harness bug 数</td><td>具身场景的容错与回滚机制</td></tr></tbody></table></div>
+  <div class="insight reveal"><h4>三条线在同一时间点做同一件事</h4><p>2026 年三个方向的公开叙事都从“模型能力”转向“系统可靠性”：车看接管里程、机器人看长任务成功率、Agent 看 Harness 修复率。指标不同，但都在回答“这个系统失败时，我能不能定位、能不能复现、能不能修”。</p></div><div class="insight reveal"><h4>共同的缺口是可审计的分母</h4><p>接管里程缺公开里程数，长任务成功率缺统一任务集，Harness 修复率缺 Harness 版本号。没有分母，就没有可比较的分子——这是三个方向共同的“基础设施债”。</p></div><div class="insight reveal"><h4>成本约束的形状完全不同</h4><p>自动驾驶是 BOM 约束（100-200 TOPS 的车规芯片），具身是数据约束（50 万小时对几千万小时），Agent 是评测约束（500 题对长程任务）。所以跨方向抄方案会失效，能抄的是“失败数据闭环”这一层方法论。</p></div>
+  <div class="personas"><div class="pcard reveal"><h4>自动驾驶 · 规控工程师</h4><dl><dt>先看什么</dt><dd>先读 01 的路线图与“时延=米”那一段，再对照方案表看一段式 vs 双系统的安全余量。</dd><dt>押注什么</dt><dd>押“可审计的接管里程”——固定路线集、公开分母、第三方复核，而不是押某个 TOPS 数字。</dd><dt>别踩什么</dt><dd>别用峰值 TOPS 做选型；别信没有对照场景的“比肩 X TOPS”。</dd></dl></div><div class="pcard reveal"><h4>具身 · 算法工程师</h4><dl><dt>先看什么</dt><dd>先读 02 的“98.5% 是评测饱和”与数据缺口算术，再看 Physical RSI 的双层机制。</dd><dt>押注什么</dt><dd>押“部署后学习闭环”——失败回流、策略固化、断点续作；数据不够时，复用以外的路都太慢。</dd><dt>别踩什么</dt><dd>别把 LIBERO 刷分当进展；别把 n=1 的场景成功率当可复制结论。</dd></dl></div><div class="pcard reveal"><h4>Agent · 系统开发者</h4><dl><dt>先看什么</dt><dd>先读 03 的 Harness 五件事与 500 题置信区间，再看框架对比表的“风险”列。</dd><dt>押注什么</dt><dd>押“可观测 + 可测试的 Harness”——轨迹归因、测试生成、熔断审计，而不是押框架本身。</dd><dt>别踩什么</dt><dd>别把框架当护城河（迁移成本在状态持久化，不在 API）；别用总分小数位做技术判断。</dd></dl></div></div>
+</section>
+</div></main>
+
+<footer class="site-foot"><div class="shell">
+  <div class="foot-grid">
+    <div>
+      <p class="foot-brand">技术路线索引 · 2026</p>
+      <p>单文件静态页：样式与脚本全部内联，无 CDN、无外部字体，断网可完整打开。</p>
+      <p>面向三类读者：自动驾驶规控工程师、具身智能算法工程师、Agent 系统开发者。</p>
+    </div>
+    <div>
+      <h4>口径</h4>
+      <p>行业数字以 2026 年 10 月公开信息为准；厂商未披露对照场景的，正文标“未披露 / 仅为示意图”。</p>
+      <p>标 “—” 的条目暂无公开一手链接，不作外链。</p>
+    </div>
+    <div>
+      <h4>论文链接</h4>
+      <p>全部经 arXiv API 逐条核对（标题与编号一致）后写入；仓库链接指向官方 GitHub。</p>
+      <p>本页为路线观察，不构成投资或选型建议。</p>
+    </div>
+  </div>
+  <div class="foot-rule">
+    <span>ROUTE INDEX / 2026.10</span>
+    <span>3 DIRECTIONS · 12 SUBLINES · 38 ENTRIES · 41 PAPERS</span>
+    <span>纯静态 · 单文件</span>
+  </div>
+</div></footer>
+
+<script>
+(function(){
+  "use strict";
+  var progress = document.getElementById('progress');
+  var entries = Array.prototype.slice.call(document.querySelectorAll('.entry'));
+  var sublines = Array.prototype.slice.call(document.querySelectorAll('.subline'));
+  var directions = Array.prototype.slice.call(document.querySelectorAll('.direction'));
+  var chips = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+  var filterCount = document.getElementById('filterCount');
+  var total = entries.length;
+  var counts = { '全部': total };
+  entries.forEach(function(el){ var t = el.getAttribute('data-type'); counts[t] = (counts[t]||0)+1; });
+  document.querySelectorAll('[data-count]').forEach(function(n){
+    var k = n.getAttribute('data-count');
+    n.textContent = k === 'all' ? total : (counts[k]||0);
+  });
+  function pad(n){ return n < 10 ? '0' + n : '' + n; }
+  function applyFilter(type){
+    var shown = 0;
+    entries.forEach(function(el){
+      var match = (type === 'all') || (el.getAttribute('data-type') === type);
+      el.classList.toggle('is-hidden', !match);
+      if (match) shown++;
+    });
+    sublines.forEach(function(sl){
+      var any = sl.querySelectorAll('.entry:not(.is-hidden)').length > 0;
+      sl.classList.toggle('is-hidden', !any);
+    });
+    directions.forEach(function(d){
+      var any = d.querySelectorAll('.subline:not(.is-hidden)').length > 0;
+      d.classList.toggle('is-hidden', !any);
+    });
+    chips.forEach(function(c){ c.setAttribute('aria-pressed', String(c.getAttribute('data-filter') === type)); });
+    filterCount.textContent = 'SHOWING ' + pad(shown) + ' / ' + total;
+  }
+  chips.forEach(function(c){ c.addEventListener('click', function(){ applyFilter(c.getAttribute('data-filter')); }); });
+  function onScroll(){
+    var h = document.body.scrollHeight - window.innerHeight;
+    var y = window.scrollY || window.pageYOffset;
+    progress.style.width = (h > 0 ? Math.min(100, (y/h)*100) : 0) + '%';
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+  var links = Array.prototype.slice.call(document.querySelectorAll('.topnav a'));
+  var map = {}; links.forEach(function(a){ map[a.getAttribute('href').slice(1)] = a; });
+  if ('IntersectionObserver' in window){
+    var spy = new IntersectionObserver(function(list){
+      list.forEach(function(e){
+        if (e.isIntersecting){
+          links.forEach(function(a){ a.classList.remove('active'); });
+          var a = map[e.target.id]; if (a) a.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+    directions.concat([document.querySelector('.cross')]).filter(Boolean).forEach(function(d){ spy.observe(d); });
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var reveals = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+    if (!reduce){
+      var ro = new IntersectionObserver(function(list){
+        list.forEach(function(e){ if (e.isIntersecting){ e.target.classList.add('in'); ro.unobserve(e.target); } });
+      }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+      reveals.forEach(function(el){ ro.observe(el); });
+    } else { reveals.forEach(function(el){ el.classList.add('in'); }); }
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+  }
+})();
+</script>
+</body>
+</html>
